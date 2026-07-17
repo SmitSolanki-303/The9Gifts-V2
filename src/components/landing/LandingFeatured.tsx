@@ -33,16 +33,16 @@ function productPrice(product: Product): number | null {
 export function LandingFeatured({ products }: Props) {
   if (!products?.length) {
     return (
-      <section className="border-y border-border bg-card/40 py-20 md:py-28" id="collection">
+      <section className="bg-background py-16 md:py-24" id="collection">
         <div className="container text-center">
-          <p className="mb-3 text-[11px] uppercase tracking-atelier text-primary">The Collection</p>
-          <h2 className="font-serif text-3xl text-foreground md:text-5xl">Featured gifts</h2>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">Trending Now</p>
+          <h2 className="font-serif text-3xl text-foreground md:text-5xl">Bestselling Gifts</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Seed your Payload admin to populate the collection, or visit the shop to browse once
             products are published.
           </p>
           <Button asChild className="mt-8" size="lg">
-            <Link href="/shop">Visit the shop</Link>
+            <Link href="/shop">Explore the shop</Link>
           </Button>
         </div>
       </section>
@@ -50,70 +50,80 @@ export function LandingFeatured({ products }: Props) {
   }
 
   return (
-    <section className="border-y border-border bg-card/30 py-20 md:py-28" id="collection">
+    <section className="bg-background py-16 md:py-24" id="collection">
       <div className="container">
-        <div className="mb-14 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <p className="mb-3 text-[11px] uppercase tracking-atelier text-primary">
-              The Collection
+            <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              Trending Now
             </p>
-            <h2 className="font-serif text-3xl text-foreground md:text-5xl">Featured gifts</h2>
+            <h2 className="font-serif text-3xl text-foreground md:text-4xl lg:text-5xl">Bestselling Gifts</h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Editorial selections treated as art pieces — not commodities. Each object is staged
-              for texture, shadow, and presence.
+              Our most loved custom merchandise, personalized apparel, and premium hampers.
             </p>
           </div>
-          <Button asChild variant="outline">
-            <Link href="/shop">View all</Link>
+          <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10">
+            <Link href="/shop">View all gifts</Link>
           </Button>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product) => {
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {products.map((product, index) => {
             const image = product.meta?.image as Media | undefined | null
             const price = productPrice(product)
+            const isBestseller = index < 2
+
+            // Fallback images for different products to make the UI look realistic
+            const fallbackImages = [
+              'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1577998474537-88cb04a58b68?q=80&w=600&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=600&auto=format&fit=crop'
+            ]
+            const fallbackImg = fallbackImages[index % fallbackImages.length]
 
             return (
-              <Card key={product.id} className="group overflow-hidden p-0">
-                <Link href={`/products/${product.slug}`} className="block">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+              <Card key={product.id} className="group overflow-hidden p-0 border border-border shadow-sm hover:shadow-md transition-shadow">
+                <Link href={`/products/${product.slug}`} className="block relative">
+                  {isBestseller && (
+                    <div className="absolute top-3 left-3 z-10 bg-error text-white text-xs font-bold uppercase px-2 py-1 rounded">
+                      Bestseller
+                    </div>
+                  )}
+                  <div className="relative aspect-square overflow-hidden bg-muted">
                     {image && typeof image === 'object' ? (
                       <MediaComponent
                         fill
                         className="absolute inset-0"
-                        imgClassName="object-cover transition-transform duration-700 group-hover:scale-105"
+                        imgClassName="object-cover transition-transform duration-700 group-hover:scale-110"
                         resource={image}
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-secondary to-background">
-                        <span className="font-serif text-4xl text-primary/40">9</span>
-                      </div>
+                      <img
+                        src={fallbackImg}
+                        alt={product.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
                     )}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                   </div>
-                  <CardHeader className="pt-5">
-                    <CardTitle className="text-lg transition-colors group-hover:text-primary">
+                  <CardHeader className="pt-4 pb-2 px-4">
+                    <CardTitle className="text-base font-semibold transition-colors group-hover:text-primary line-clamp-1">
                       {product.title}
                     </CardTitle>
-                    {product.meta?.description ? (
-                      <CardDescription className="line-clamp-2">
-                        {product.meta.description}
-                      </CardDescription>
-                    ) : null}
                   </CardHeader>
-                  <CardFooter className="justify-between pb-6">
+                  <CardFooter className="flex flex-col items-start px-4 pb-4">
                     {price != null ? (
                       <Price
                         amount={price}
-                        className="text-sm uppercase tracking-atelier text-primary"
+                        className="text-lg font-bold text-foreground"
                       />
                     ) : (
-                      <span className="text-sm uppercase tracking-atelier text-primary">
-                        Inquire
+                      <span className="text-sm font-bold text-foreground">
+                        Price on Request
                       </span>
                     )}
-                    <span className="text-[11px] uppercase tracking-atelier text-muted-foreground group-hover:text-foreground">
-                      View piece →
+                    <span className="mt-3 w-full rounded bg-primary/10 px-3 py-2 text-center text-sm font-semibold text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      View details
                     </span>
                   </CardFooter>
                 </Link>
