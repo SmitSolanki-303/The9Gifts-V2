@@ -1,15 +1,18 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
+type Category = { name: string; image: string | any; href: string }
+
 type Props = {
   eyebrow?: string
   title?: string
   subtitle?: string
   primaryCta?: { label: string; href: string }
   secondaryCta?: { label: string; href: string }
+  categories?: Category[]
 }
 
-const categories = [
+const defaultCategories: Category[] = [
   {
     name: 'Birthdays',
     image:
@@ -54,6 +57,7 @@ export function LandingHero({
   subtitle = 'Discover customized apparel, curated gift hampers, and bespoke printed products to make every occasion memorable.',
   primaryCta = { label: 'Shop Gifts', href: '/shop' },
   secondaryCta = { label: 'Explore Hampers', href: '#collection' },
+  categories = defaultCategories,
 }: Props) {
   return (
     <section className="flex flex-col items-center overflow-hidden bg-background pt-8 pb-12">
@@ -124,7 +128,7 @@ export function LandingHero({
             <Link key={cat.name} href={cat.href} className="group flex flex-col items-center gap-3">
               <div className="flex h-20 w-20 md:h-28 md:w-28 items-center justify-center rounded-full border-[3px] border-border bg-muted overflow-hidden shadow-sm transition-all duration-300 group-hover:border-primary group-hover:shadow-md group-hover:scale-105">
                 <img
-                  src={cat.image}
+                  src={typeof cat.image === 'object' && cat.image?.url ? cat.image.url : cat.image}
                   alt={cat.name}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />

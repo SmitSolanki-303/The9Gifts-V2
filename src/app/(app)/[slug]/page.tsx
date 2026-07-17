@@ -10,7 +10,7 @@ import { homeStaticData } from '@/endpoints/seed/home-static'
 import React from 'react'
 
 import type { Page } from '@/payload-types'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -44,6 +44,11 @@ type Args = {
 
 export default async function Page({ params }: Args) {
   const { slug = 'home' } = await params
+  
+  if (slug === 'home') {
+    redirect('/')
+  }
+
   const url = '/' + slug
 
   let page = await queryPageBySlug({

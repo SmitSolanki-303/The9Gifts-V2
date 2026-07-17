@@ -17,7 +17,11 @@ import { getPayload } from 'payload'
 import React from 'react'
 
 export default async function HomePage() {
-  const [page, products] = await Promise.all([queryHomePage(), queryFeaturedProducts()])
+  const [page, products, landingConfig] = await Promise.all([
+    queryHomePage(),
+    queryFeaturedProducts(),
+    queryLandingConfig(),
+  ])
 
   const heroCopy = extractHeroCopy(page)
 
@@ -29,8 +33,9 @@ export default async function HomePage() {
         subtitle={heroCopy.subtitle}
         primaryCta={heroCopy.primaryCta}
         secondaryCta={heroCopy.secondaryCta}
+        categories={landingConfig?.categories as any}
       />
-      <LandingPillars />
+      <LandingPillars occasions={landingConfig?.occasions as any} />
       <LandingFeatured products={products} />
       <LandingStory />
       <LandingFAQ />
@@ -94,6 +99,17 @@ async function queryFeaturedProducts(): Promise<Product[]> {
     return result.docs || []
   } catch {
     return []
+  }
+}
+
+async function queryLandingConfig() {
+  try {
+    const payload = await getPayload({ config: configPromise })
+    return await payload.findGlobal({
+      slug: 'landing-config',
+    })
+  } catch {
+    return null
   }
 }
 

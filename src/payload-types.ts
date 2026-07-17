@@ -131,10 +131,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'landing-config': LandingConfig;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'landing-config': LandingConfigSelect<false> | LandingConfigSelect<true>;
   };
   locale: null;
   widgets: {
@@ -485,6 +487,9 @@ export interface Page {
     | ThreeItemGridBlock
     | BannerBlock
     | FormBlock
+    | FaqBlock
+    | FeatureBlock
+    | EcomHeroBlock
   )[];
   meta?: {
     title?: string | null;
@@ -867,6 +872,63 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock".
+ */
+export interface FaqBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  questions?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureBlock".
+ */
+export interface FeatureBlock {
+  eyebrow?: string | null;
+  title: string;
+  content: string;
+  image: number | Media;
+  alignment?: ('imageLeft' | 'imageRight') | null;
+  link?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'feature';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EcomHeroBlock".
+ */
+export interface EcomHeroBlock {
+  eyebrow?: string | null;
+  title: string;
+  subtitle?: string | null;
+  primaryCta?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  secondaryCta?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ecomHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "variants".
  */
 export interface Variant {
@@ -1217,6 +1279,9 @@ export interface PagesSelect<T extends boolean = true> {
         threeItemGrid?: T | ThreeItemGridBlockSelect<T>;
         banner?: T | BannerBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        faq?: T | FaqBlockSelect<T>;
+        feature?: T | FeatureBlockSelect<T>;
+        ecomHero?: T | EcomHeroBlockSelect<T>;
       };
   meta?:
     | T
@@ -1346,6 +1411,66 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock_select".
+ */
+export interface FaqBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  questions?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureBlock_select".
+ */
+export interface FeatureBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  content?: T;
+  image?: T;
+  alignment?: T;
+  link?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EcomHeroBlock_select".
+ */
+export interface EcomHeroBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  subtitle?: T;
+  primaryCta?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  secondaryCta?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  image?: T;
   id?: T;
   blockName?: T;
 }
@@ -1827,6 +1952,32 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing-config".
+ */
+export interface LandingConfig {
+  id: number;
+  categories?:
+    | {
+        name: string;
+        image: number | Media;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  occasions?:
+    | {
+        title: string;
+        description: string;
+        image: number | Media;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -1865,6 +2016,32 @@ export interface FooterSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing-config_select".
+ */
+export interface LandingConfigSelect<T extends boolean = true> {
+  categories?:
+    | T
+    | {
+        name?: T;
+        image?: T;
+        href?: T;
+        id?: T;
+      };
+  occasions?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        href?: T;
         id?: T;
       };
   updatedAt?: T;

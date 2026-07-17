@@ -9,7 +9,9 @@ import { Gift, Heart, Calendar, Cake, Briefcase, Star } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
-const occasions = [
+export type Occasion = { title: string; description: string; image: string | any; href: string }
+
+const defaultOccasions: Occasion[] = [
   {
     image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=600&auto=format&fit=crop',
     title: 'Birthday Gifts',
@@ -48,7 +50,7 @@ const occasions = [
   },
 ]
 
-export function LandingPillars() {
+export function LandingPillars({ occasions = defaultOccasions }: { occasions?: Occasion[] }) {
   return (
     <section className="container py-16 md:py-24 bg-accent/30 rounded-3xl mt-12 mb-12" id="occasions">
       <div className="mx-auto mb-12 max-w-2xl text-center">
@@ -68,7 +70,7 @@ export function LandingPillars() {
               >
                 <div className="relative h-48 w-full overflow-hidden bg-muted">
                   <img
-                    src={occasion.image}
+                    src={typeof occasion.image === 'object' && occasion.image?.url ? occasion.image.url : occasion.image}
                     alt={occasion.title}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
