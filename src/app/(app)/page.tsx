@@ -1,5 +1,167 @@
-import PageTemplate, { generateMetadata } from './[slug]/page'
+import type { Metadata } from 'next'
 
-export default PageTemplate
+import {
+  LandingCTA,
+  LandingFAQ,
+  LandingFeatured,
+  LandingHero,
+  LandingPillars,
+  LandingStory,
+} from '@/components/landing'
+import { homeStaticData } from '@/endpoints/seed/home-static'
+import type { Page, Product } from '@/payload-types'
+import { generateMeta } from '@/utilities/generateMeta'
+import configPromise from '@payload-config'
+import { draftMode } from 'next/headers'
+import { getPayload } from 'payload'
+import React from 'react'
 
-export { generateMetadata }
+export default async function HomePage() {
+  const [page, products] = await Promise.all([queryHomePage(), queryFeaturedProducts()])
+
+  const heroCopy = extractHeroCopy(page)
+
+  return (
+    <div className="pb-8">
+      <LandingHero
+        eyebrow={heroCopy.eyebrow}
+        title={heroCopy.title}
+        subtitle={heroCopy.subtitle}
+        primaryCta={heroCopy.primaryCta}
+        secondaryCta={heroCopy.secondaryCta}
+      />
+      <LandingPillars />
+      <LandingFeatured products={products} />
+      <LandingStory />
+      <LandingFAQ />
+      <LandingCTA />
+    </div>
+  )
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await queryHomePage()
+  const meta = await generateMeta({ doc: page })
+
+  return {
+    ...meta,
+    title: meta.title || 'The9Gifts | Bespoke Brilliance',
+    description:
+      meta.description ||
+      'A private atelier of nine curated gifts — liquid gold intent, deep onyx stage, and artisan craftsmanship.',
+  }
+}
+
+async function queryHomePage(): Promise<Page> {
+  const { isEnabled: draft } = await draftMode()
+
+  try {
+    const payload = await getPayload({ config: configPromise })
+
+    const result = await payload.find({
+      collection: 'pages',
+      draft,
+      limit: 1,
+      overrideAccess: draft,
+      pagination: false,
+      where: {
+        and: [
+          { slug: { equals: 'home' } },
+          ...(draft ? [] : [{ _status: { equals: 'published' as const } }]),
+        ],
+      },
+    })
+
+    return result.docs?.[0] || (homeStaticData() as Page)
+  } catch {
+    return homeStaticData() as Page
+  }
+}
+
+async function queryFeaturedProducts(): Promise<Product[]> {
+  try {
+    const payload = await getPayload({ config: configPromise })
+
+    const result = await payload.find({
+      collection: 'products',
+      depth: 1,
+      limit: 6,
+      overrideAccess: false,
+      pagination: false,
+      sort: '-createdAt',
+    })
+
+    return result.docs || []
+  } catch {
+    return []
+  }
+}
+
+function extractTextFromLexical(node: unknown): string {
+  if (!node || typeof node !== 'object') return ''
+
+  const n = node as {
+    type?: string
+    text?: string
+    children?: unknown[]
+  }
+
+  if (n.type === 'text' && typeof n.text === 'string') {
+    return n.text
+  }
+
+  if (Array.isArray(n.children)) {
+    return n.children.map(extractTextFromLexical).join(' ').replace(/\s+/g, ' ').trim()
+  }
+
+  return ''
+}
+
+function extractHeroCopy(page: Page | null) {
+  const fallback = {
+    eyebrow: 'The Gilded Atelier',
+    title: 'Bespoke Brilliance',
+    subtitle:
+      'Nine curated gifts. One unforgettable impression. Discover an exclusive collection crafted for those who value presence, ceremony, and the quiet luxury of the well-chosen object.',
+    primaryCta: { label: 'Explore the Collection', href: '/shop' },
+    secondaryCta: { label: 'Our Story', href: '#atelier' },
+  }
+
+  if (!page?.hero) return fallback
+
+  const richText = page.hero.richText as
+    | { root?: { children?: Array<{ type?: string; tag?: string; children?: unknown[] }> } }
+    | null
+    | undefined
+
+  const children = richText?.root?.children || []
+  let title = fallback.title
+  let subtitle = fallback.subtitle
+
+  for (const child of children) {
+    if (child.type === 'heading' && child.tag === 'h1') {
+      const text = extractTextFromLexical(child)
+      if (text) title = text
+    }
+    if (child.type === 'paragraph') {
+      const text = extractTextFromLexical(child)
+      if (text) subtitle = text
+    }
+  }
+
+  const links = page.hero.links || []
+  const primary = links[0]?.link
+  const secondary = links[1]?.link
+
+  return {
+    eyebrow: 'The Gilded Atelier',
+    title,
+    subtitle,
+    primaryCta: primary?.url
+      ? { label: primary.label || fallback.primaryCta.label, href: primary.url }
+      : fallback.primaryCta,
+    secondaryCta: secondary?.url
+      ? { label: secondary.label || fallback.secondaryCta.label, href: secondary.url }
+      : fallback.secondaryCta,
+  }
+}

@@ -29,8 +29,6 @@ export function MobileMenu({ menu }: Props) {
   const searchParams = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)
 
-  const closeMobileMenu = () => setIsOpen(false)
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -47,23 +45,28 @@ export function MobileMenu({ menu }: Props) {
 
   return (
     <Sheet onOpenChange={setIsOpen} open={isOpen}>
-      <SheetTrigger className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:bg-black dark:text-white">
+      <SheetTrigger className="relative flex h-11 w-11 items-center justify-center rounded-[2px] border border-border text-primary transition-colors hover:glow-gold-sm">
         <MenuIcon className="h-4" />
       </SheetTrigger>
 
-      <SheetContent side="left" className="px-4">
+      <SheetContent side="left" className="border-border bg-background px-4">
         <SheetHeader className="px-0 pt-4 pb-0">
-          <SheetTitle>My Store</SheetTitle>
-
-          <SheetDescription />
+          <SheetTitle className="font-serif text-primary">The9Gifts</SheetTitle>
+          <SheetDescription className="uppercase tracking-atelier text-xs">
+            The Gilded Atelier
+          </SheetDescription>
         </SheetHeader>
 
-        <div className="py-4">
+        <div className="py-6">
           {menu?.length ? (
-            <ul className="flex w-full flex-col">
+            <ul className="flex w-full flex-col gap-1">
               {menu.map((item) => (
-                <li className="py-2" key={item.id}>
-                  <CMSLink {...item.link} appearance="link" />
+                <li className="border-b border-border/60 py-3" key={item.id}>
+                  <CMSLink
+                    {...item.link}
+                    appearance="link"
+                    className="font-body text-sm uppercase tracking-atelier text-foreground hover:text-primary"
+                  />
                 </li>
               ))}
             </ul>
@@ -72,20 +75,25 @@ export function MobileMenu({ menu }: Props) {
 
         {user ? (
           <div className="mt-4">
-            <h2 className="text-xl mb-4">My account</h2>
-            <hr className="my-2" />
-            <ul className="flex flex-col gap-2">
+            <h2 className="mb-4 font-serif text-xl text-primary">My account</h2>
+            <ul className="flex flex-col gap-3 text-sm uppercase tracking-atelier">
               <li>
-                <Link href="/orders">Orders</Link>
+                <Link className="hover:text-primary" href="/orders">
+                  Orders
+                </Link>
               </li>
               <li>
-                <Link href="/account/addresses">Addresses</Link>
+                <Link className="hover:text-primary" href="/account/addresses">
+                  Addresses
+                </Link>
               </li>
               <li>
-                <Link href="/account">Manage account</Link>
+                <Link className="hover:text-primary" href="/account">
+                  Manage account
+                </Link>
               </li>
               <li className="mt-6">
-                <Button asChild variant="outline">
+                <Button asChild variant="outline" className="w-full">
                   <Link href="/logout">Log out</Link>
                 </Button>
               </li>
@@ -93,13 +101,12 @@ export function MobileMenu({ menu }: Props) {
           </div>
         ) : (
           <div>
-            <h2 className="text-xl mb-4">My account</h2>
-            <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
-              <Button asChild className="w-full sm:flex-1" variant="outline">
+            <h2 className="mb-4 font-serif text-xl text-primary">My account</h2>
+            <div className="mt-4 flex flex-col gap-3">
+              <Button asChild className="w-full" variant="outline">
                 <Link href="/login">Log in</Link>
               </Button>
-              <span className="text-center text-sm text-muted-foreground sm:text-base">or</span>
-              <Button asChild className="w-full sm:flex-1">
+              <Button asChild className="w-full">
                 <Link href="/create-account">Create an account</Link>
               </Button>
             </div>

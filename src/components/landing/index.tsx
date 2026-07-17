@@ -1,0 +1,6 @@
+export { LandingHero } from './LandingHero'
+export { LandingPillars } from './LandingPillars'
+export { LandingFeatured } from './LandingFeatured'
+export { LandingStory } from './LandingStory'
+export { LandingFAQ } from './LandingFAQ'
+export { LandingCTA } from './LandingCTA'

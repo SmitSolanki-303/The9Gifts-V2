@@ -513,15 +513,15 @@ export const seed = async ({
           {
             link: {
               type: 'custom',
-              label: 'Home',
-              url: '/',
+              label: 'Collection',
+              url: '/shop',
             },
           },
           {
             link: {
               type: 'custom',
-              label: 'Shop',
-              url: '/shop',
+              label: 'Atelier',
+              url: '/#atelier',
             },
           },
           {
@@ -541,8 +541,8 @@ export const seed = async ({
           {
             link: {
               type: 'custom',
-              label: 'Admin',
-              url: '/admin',
+              label: 'Shop',
+              url: '/shop',
             },
           },
           {
@@ -555,17 +555,15 @@ export const seed = async ({
           {
             link: {
               type: 'custom',
-              label: 'Source Code',
-              newTab: true,
-              url: 'https://github.com/payloadcms/payload/tree/3.x/templates/website',
+              label: 'Contact',
+              url: '/contact',
             },
           },
           {
             link: {
               type: 'custom',
-              label: 'Payload',
-              newTab: true,
-              url: 'https://payloadcms.com/',
+              label: 'Admin',
+              url: '/admin',
             },
           },
         ],
