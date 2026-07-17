@@ -126,8 +126,10 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-3xl">
-      {enableIntro && introContent && !hasSubmitted && (
+    <div className="w-full">
+      <div className="container mx-auto">
+        <div className="mx-auto lg:max-w-3xl">
+          {enableIntro && introContent && !hasSubmitted && (
         <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
       )}
       <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
@@ -169,8 +171,10 @@ export const FormBlock: React.FC<
               </Button>
             </form>
           )}
-        </FormProvider>
+          </FormProvider>
+        </div>
       </div>
     </div>
+  </div>
   )
 }

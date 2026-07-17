@@ -55,9 +55,11 @@ export const OccasionsBlock: React.FC<Props> = async ({
   }
 
   return (
-    <section className="container py-16 md:py-24 bg-accent/30 rounded-3xl mt-12 mb-12" id="occasions">
-      <div className="mx-auto mb-12 max-w-2xl text-center">
-        {subtitle && <p className="mb-3 text-[11px] uppercase tracking-atelier text-primary">{subtitle}</p>}
+    <section className="w-full py-16 md:py-24" id="occasions">
+      <div className="container mx-auto">
+        <div className="bg-accent/30 rounded-3xl py-12 px-6 md:px-12 md:py-16 mt-4 mb-4">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            {subtitle && <p className="mb-3 text-[11px] uppercase tracking-atelier text-primary">{subtitle}</p>}
         {title && <h2 className="font-serif text-3xl text-foreground md:text-5xl">{title}</h2>}
       </div>
 
@@ -95,6 +97,8 @@ export const OccasionsBlock: React.FC<Props> = async ({
             </Link>
           )
         })}
+          </div>
+        </div>
       </div>
     </section>
   )

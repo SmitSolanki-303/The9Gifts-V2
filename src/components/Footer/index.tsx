@@ -19,8 +19,8 @@ export async function Footer() {
   const copyrightName = COMPANY_NAME || SITE_NAME || 'The9Gifts'
 
   return (
-    <footer className="mt-auto border-t border-border bg-background text-sm text-muted-foreground">
-      <div className="container">
+    <footer className="w-full mt-auto border-t border-border bg-background text-sm text-muted-foreground">
+      <div className="container mx-auto">
         <div className="flex w-full flex-col gap-10 py-14 md:flex-row md:items-start md:justify-between md:gap-12">
           <div className="max-w-xs">
             <Link className="group flex items-center gap-3 text-foreground" href="/">

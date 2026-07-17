@@ -73,59 +73,61 @@ export const PromoSliderBlock: React.FC<Props> = ({ banners }) => {
 
   return (
     <section className="w-full py-8 overflow-hidden bg-background">
-      <div className="container mx-auto px-2 md:px-6 relative promo-swiper-container">
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          spaceBetween={16}
-          slidesPerView={1.1}
-          centeredSlides={false}
-          pagination={{ clickable: true, dynamicBullets: true }}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
-          loop={banners.length > 2} // Only loop if we have enough banners
-          breakpoints={{
-            768: {
-              slidesPerView: 1.5,
-              spaceBetween: 20,
-            },
-            1024: {
-              slidesPerView: 2.15,
-              spaceBetween: 24,
-            },
-            1280: {
-              slidesPerView: 2.25,
-              spaceBetween: 32,
-            },
-          }}
-          className="w-full pb-12"
-        >
-          {banners.map((banner, index) => {
-            const imageUrl =
-              typeof banner.image === 'object' && banner.image?.url
-                ? banner.image.url
-                : banner.image
+      <div className="container mx-auto">
+        <div className="relative w-full">
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={16}
+            slidesPerView={1.1}
+            centeredSlides={false}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            loop={banners.length > 2} // Only loop if we have enough banners
+            breakpoints={{
+              768: {
+                slidesPerView: 1.5,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 2.15,
+                spaceBetween: 24,
+              },
+              1280: {
+                slidesPerView: 2.25,
+                spaceBetween: 32,
+              },
+            }}
+            className="w-full pb-12"
+          >
+            {banners.map((banner, index) => {
+              const imageUrl =
+                typeof banner.image === 'object' && banner.image?.url
+                  ? banner.image.url
+                  : banner.image
 
-            return (
-              <SwiperSlide key={banner.id || index}>
-                <Link
-                  href={banner.link || '#'}
-                  className="block overflow-hidden rounded-2xl shadow-sm transition-transform hover:shadow-md active:scale-[0.98]"
-                >
-                  <div className="relative h-auto max-h-[250px] sm:max-h-[350px] md:max-h-[420px] w-full bg-muted flex items-center justify-center">
-                    {imageUrl && (
-                      <img
-                        src={imageUrl as string}
-                        alt={`Promo banner ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    )}
-                  </div>
-                </Link>
-              </SwiperSlide>
-            )
-          })}
+              return (
+                <SwiperSlide key={banner.id || index}>
+                  <Link
+                    href={banner.link || '#'}
+                    className="block overflow-hidden rounded-2xl shadow-sm transition-transform hover:shadow-md active:scale-[0.98]"
+                  >
+                    <div className="relative h-auto max-h-[250px] sm:max-h-[350px] md:max-h-[420px] w-full bg-muted flex items-center justify-center">
+                      {imageUrl && (
+                        <img
+                          src={imageUrl as string}
+                          alt={`Promo banner ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              )
+            })}
 
-          <SliderNavigation />
-        </Swiper>
+            <SliderNavigation />
+          </Swiper>
+        </div>
       </div>
     </section>
   )

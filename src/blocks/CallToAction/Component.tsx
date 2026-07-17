@@ -12,8 +12,9 @@ export const CallToActionBlock: React.FC<
   }
 > = ({ links, richText }) => {
   return (
-    <div className="container">
-      <Card className="border-primary/30 bg-gradient-to-br from-card via-background to-card glow-gold-sm">
+    <section className="w-full my-12 md:my-16">
+      <div className="container mx-auto">
+        <Card className="border-primary/30 bg-gradient-to-br from-card via-background to-card glow-gold-sm">
         <CardContent className="flex flex-col gap-8 p-8 md:flex-row md:items-center md:justify-between md:p-12">
           <div className="max-w-3xl">
             {richText && <RichText className="mb-0" data={richText} enableGutter={false} />}
@@ -24,7 +25,8 @@ export const CallToActionBlock: React.FC<
             })}
           </div>
         </CardContent>
-      </Card>
-    </div>
+        </Card>
+      </div>
+    </section>
   )
 }

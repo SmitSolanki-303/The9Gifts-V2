@@ -16,8 +16,9 @@ export const FaqBlock: React.FC<Props> = ({ eyebrow = 'Guidance', title = 'Frequ
   if (!questions?.length) return null
 
   return (
-    <section className="container py-20 md:py-28">
-      <div className="mx-auto max-w-3xl">
+    <section className="w-full py-20 md:py-28">
+      <div className="container mx-auto">
+        <div className="mx-auto max-w-3xl">
         <div className="mb-10 text-center">
           <p className="mb-3 text-[11px] uppercase tracking-atelier text-primary">{eyebrow || 'Guidance'}</p>
           <h2 className="font-serif text-3xl text-foreground md:text-5xl">{title || 'Frequently Asked Questions'}</h2>
@@ -35,6 +36,7 @@ export const FaqBlock: React.FC<Props> = ({ eyebrow = 'Guidance', title = 'Frequ
             </AccordionItem>
           ))}
         </Accordion>
+        </div>
       </div>
     </section>
   )

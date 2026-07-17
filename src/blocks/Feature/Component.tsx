@@ -17,8 +17,9 @@ export const FeatureBlock: React.FC<Props> = ({ eyebrow, title, content, image, 
   const isImageRight = alignment === 'imageRight'
 
   return (
-    <section className="container py-20 md:py-28">
-      <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+    <section className="w-full py-20 md:py-28">
+      <div className="container mx-auto">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
         
         {/* Image Column */}
         <div className={`lg:col-span-5 ${isImageRight ? 'lg:order-2' : 'lg:order-1'}`}>
@@ -47,6 +48,7 @@ export const FeatureBlock: React.FC<Props> = ({ eyebrow, title, content, image, 
               <Link href={link.url}>{link.label}</Link>
             </Button>
           )}
+        </div>
         </div>
       </div>
     </section>

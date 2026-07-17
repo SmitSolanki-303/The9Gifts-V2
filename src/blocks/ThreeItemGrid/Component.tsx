@@ -47,10 +47,14 @@ export const ThreeItemGridBlock: React.FC<
   const [firstProduct, secondProduct, thirdProduct] = products
 
   return (
-    <section className="container grid gap-4 pb-4 md:grid-cols-6 md:grid-rows-2">
-      <ThreeItemGridItem item={firstProduct as Product} priority size="full" />
-      <ThreeItemGridItem item={secondProduct as Product} priority size="half" />
-      <ThreeItemGridItem item={thirdProduct as Product} size="half" />
+    <section className="w-full pb-4">
+      <div className="container mx-auto">
+        <div className="grid gap-4 md:grid-cols-6 md:grid-rows-2">
+          <ThreeItemGridItem item={firstProduct as Product} priority size="full" />
+          <ThreeItemGridItem item={secondProduct as Product} priority size="half" />
+          <ThreeItemGridItem item={thirdProduct as Product} size="half" />
+        </div>
+      </div>
     </section>
   )
 }
