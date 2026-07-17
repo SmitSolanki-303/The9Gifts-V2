@@ -491,6 +491,7 @@ export interface Page {
     | FeatureBlock
     | EcomHeroBlock
     | OccasionsBlock
+    | PromoSliderBlock
   )[];
   meta?: {
     title?: string | null;
@@ -941,6 +942,22 @@ export interface OccasionsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PromoSliderBlock".
+ */
+export interface PromoSliderBlock {
+  banners?:
+    | {
+        image: number | Media;
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'promoSlider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "variants".
  */
 export interface Variant {
@@ -1295,6 +1312,7 @@ export interface PagesSelect<T extends boolean = true> {
         feature?: T | FeatureBlockSelect<T>;
         ecomHero?: T | EcomHeroBlockSelect<T>;
         occasions?: T | OccasionsBlockSelect<T>;
+        promoSlider?: T | PromoSliderBlockSelect<T>;
       };
   meta?:
     | T
@@ -1494,6 +1512,21 @@ export interface EcomHeroBlockSelect<T extends boolean = true> {
 export interface OccasionsBlockSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PromoSliderBlock_select".
+ */
+export interface PromoSliderBlockSelect<T extends boolean = true> {
+  banners?:
+    | T
+    | {
+        image?: T;
+        link?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

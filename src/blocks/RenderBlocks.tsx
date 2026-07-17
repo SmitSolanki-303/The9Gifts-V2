@@ -10,6 +10,7 @@ import { FaqBlock } from '@/blocks/Faq/Component'
 import { FeatureBlock } from '@/blocks/Feature/Component'
 import { EcomHeroBlock } from '@/blocks/EcomHero/Component'
 import { OccasionsBlock } from '@/blocks/Occasions/Component'
+import { PromoSliderBlock } from '@/blocks/PromoSlider/Component'
 import { toKebabCase } from '@/utilities/toKebabCase'
 import React, { Fragment } from 'react'
 
@@ -28,6 +29,7 @@ const blockComponents = {
   feature: FeatureBlock,
   ecomHero: EcomHeroBlock,
   occasions: OccasionsBlock,
+  promoSlider: PromoSliderBlock,
 }
 
 export const RenderBlocks: React.FC<{

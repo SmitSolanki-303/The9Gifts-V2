@@ -143,7 +143,8 @@
 }
 
 /* The Gilded Atelier — paper white base, golden heritage accent, charcoal black text */
-:root, [data-theme='light'] {
+:root,
+[data-theme='light'] {
   --gold: #c79a42;
   --gold-foreground: #fcfbf8;
   --charcoal: #282828;
@@ -169,15 +170,15 @@
   --border: #e7e6e4;
   --input: #e7e6e4;
   --ring: #c79a42;
-  
+
   --chart-1: #c79a42;
   --chart-2: #b88d3d;
   --chart-3: #8a6a2e;
   --chart-4: #282828;
   --chart-5: #e7e6e4;
-  
+
   --radius: 0.25rem;
-  
+
   --sidebar: #fcfbf8;
   --sidebar-foreground: #282828;
   --sidebar-primary: #c79a42;
@@ -186,7 +187,7 @@
   --sidebar-accent-foreground: #282828;
   --sidebar-border: #e7e6e4;
   --sidebar-ring: #c79a42;
-  
+
   --success: #3d6b5a;
   --warning: #c79a42;
   --error: #b54a4a;
@@ -218,7 +219,7 @@
   --border: #3b3b3b;
   --input: #3b3b3b;
   --ring: #c79a42;
-  
+
   --sidebar: #282828;
   --sidebar-foreground: #fcfbf8;
   --sidebar-primary: #c79a42;
@@ -305,4 +306,13 @@ a,
 input,
 button {
   @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
+/* Promo Slider Custom Styles */
+.promo-swiper-container {
+  --swiper-pagination-color: var(--gold);
+}
+
+.promo-swiper-container .swiper-pagination-bullet-active {
+  background-color: var(--gold) !important;
 }

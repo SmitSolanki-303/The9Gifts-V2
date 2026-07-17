@@ -14,6 +14,7 @@ import { Faq } from '@/blocks/Faq/config'
 import { Feature } from '@/blocks/Feature/config'
 import { EcomHero } from '@/blocks/EcomHero/config'
 import { Occasions } from '@/blocks/Occasions/config'
+import { PromoSlider } from '@/blocks/PromoSlider/config'
 import { hero } from '@/fields/hero'
 import { slugField } from 'payload'
 import { adminOrPublishedStatus } from '@/access/adminOrPublishedStatus'
@@ -104,6 +105,7 @@ export const Pages: CollectionConfig = {
                 Feature,
                 EcomHero,
                 Occasions,
+                PromoSlider,
               ],
               required: true,
             },

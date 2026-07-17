@@ -87,24 +87,21 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
+        backgroundColor: visible ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0)",
+        backdropFilter: visible ? "blur(12px)" : "blur(0px)",
         boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          ? "0 8px 32px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(199, 154, 66, 0.15)"
           : "none",
-        width: visible ? "40%" : "100%",
-        y: visible ? 20 : 0,
+        maxWidth: visible ? "800px" : "1280px",
+        y: visible ? 10 : 0,
       }}
       transition={{
         type: "spring",
-        stiffness: 200,
-        damping: 50,
-      }}
-      style={{
-        minWidth: "800px",
+        stiffness: 250,
+        damping: 40,
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-[60] mx-auto hidden w-full flex-row items-center justify-between self-start rounded-full px-6 py-3 lg:flex",
         className,
       )}
     >
@@ -149,24 +146,24 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
+        backgroundColor: visible ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0)",
+        backdropFilter: visible ? "blur(12px)" : "blur(0px)",
         boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          ? "0 8px 32px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(199, 154, 66, 0.15)"
           : "none",
         width: visible ? "90%" : "100%",
-        paddingRight: visible ? "12px" : "0px",
-        paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
-        y: visible ? 20 : 0,
+        paddingRight: visible ? "16px" : "0px",
+        paddingLeft: visible ? "16px" : "0px",
+        borderRadius: visible ? "2rem" : "0px",
+        y: visible ? 10 : 0,
       }}
       transition={{
         type: "spring",
-        stiffness: 200,
-        damping: 50,
+        stiffness: 250,
+        damping: 40,
       }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-50 mx-auto flex w-full flex-col items-center justify-between px-4 py-3 lg:hidden",
         className,
       )}
     >
