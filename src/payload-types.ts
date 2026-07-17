@@ -490,6 +490,7 @@ export interface Page {
     | FaqBlock
     | FeatureBlock
     | EcomHeroBlock
+    | OccasionsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -929,6 +930,17 @@ export interface EcomHeroBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OccasionsBlock".
+ */
+export interface OccasionsBlock {
+  title?: string | null;
+  subtitle?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'occasions';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "variants".
  */
 export interface Variant {
@@ -1282,6 +1294,7 @@ export interface PagesSelect<T extends boolean = true> {
         faq?: T | FaqBlockSelect<T>;
         feature?: T | FeatureBlockSelect<T>;
         ecomHero?: T | EcomHeroBlockSelect<T>;
+        occasions?: T | OccasionsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1471,6 +1484,16 @@ export interface EcomHeroBlockSelect<T extends boolean = true> {
         url?: T;
       };
   image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OccasionsBlock_select".
+ */
+export interface OccasionsBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
   id?: T;
   blockName?: T;
 }

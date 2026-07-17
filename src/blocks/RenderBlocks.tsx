@@ -9,6 +9,7 @@ import { ThreeItemGridBlock } from '@/blocks/ThreeItemGrid/Component'
 import { FaqBlock } from '@/blocks/Faq/Component'
 import { FeatureBlock } from '@/blocks/Feature/Component'
 import { EcomHeroBlock } from '@/blocks/EcomHero/Component'
+import { OccasionsBlock } from '@/blocks/Occasions/Component'
 import { toKebabCase } from '@/utilities/toKebabCase'
 import React, { Fragment } from 'react'
 
@@ -26,6 +27,7 @@ const blockComponents = {
   faq: FaqBlock,
   feature: FeatureBlock,
   ecomHero: EcomHeroBlock,
+  occasions: OccasionsBlock,
 }
 
 export const RenderBlocks: React.FC<{

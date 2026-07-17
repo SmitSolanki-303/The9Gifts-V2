@@ -22,6 +22,10 @@ export const EcomHeroBlock: React.FC<Props> = async ({
   secondaryCta,
   image,
 }) => {
+  const safeTitle = title || 'Celebrate Every Emotion'
+  const safeSubtitle = subtitle || 'Discover customized apparel, curated gift hampers, and bespoke printed products to make every occasion memorable.'
+  const safeEyebrow = eyebrow || 'Premium Gifting'
+
   // Fetch global landing config for categories
   let categories: any[] = []
   try {
@@ -45,20 +49,20 @@ export const EcomHeroBlock: React.FC<Props> = async ({
     <section className="flex flex-col items-center overflow-hidden bg-background pt-8 pb-12">
       <div className="container relative mx-auto overflow-hidden rounded-xl bg-gradient-to-r from-accent to-background px-6 py-16 md:px-16 md:py-24 border border-border shadow-sm flex flex-col md:flex-row items-center justify-between">
         <div className="relative z-10 flex w-full flex-col items-start justify-center text-left md:w-1/2">
-          {eyebrow && (
+          {safeEyebrow && (
             <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
-              {eyebrow}
+              {safeEyebrow}
             </p>
           )}
 
           <h1 className="font-serif text-4xl leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="text-primary block mb-2">{title.split(' ')[0]}</span>{' '}
-            <span>{title.split(' ').slice(1).join(' ')}</span>
+            <span className="text-primary block mb-2">{safeTitle.split(' ')[0]}</span>{' '}
+            <span>{safeTitle.split(' ').slice(1).join(' ')}</span>
           </h1>
 
-          {subtitle && (
+          {safeSubtitle && (
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              {subtitle}
+              {safeSubtitle}
             </p>
           )}
 
