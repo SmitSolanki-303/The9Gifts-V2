@@ -142,115 +142,91 @@
   }
 }
 
-/* The Gilded Atelier — deep onyx base, liquid gold accent, bone white text */
-:root {
-  --gold: #d4af37;
-  --gold-foreground: #0a0908;
-  --onyx: #0a0908;
-  --bone: #fffaff;
+/* The Gilded Atelier — paper white base, golden heritage accent, charcoal black text */
+:root, [data-theme='light'] {
+  --gold: #c79a42;
+  --gold-foreground: #fcfbf8;
+  --charcoal: #282828;
+  --paper: #fcfbf8;
+  --platinum: #e7e6e4;
 
-  --background: #0a0908;
-  --foreground: #fffaff;
-  --card: #121110;
-  --card-foreground: #fffaff;
-  --popover: #0a0908;
-  --popover-foreground: #fffaff;
-  --primary: #d4af37;
-  --primary-foreground: #0a0908;
-  --secondary: #1a1816;
-  --secondary-foreground: #fffaff;
-  --muted: #1a1816;
-  --muted-foreground: color-mix(in oklab, #fffaff 62%, transparent);
-  --accent: #1f1c18;
-  --accent-foreground: #d4af37;
+  --background: #fcfbf8;
+  --foreground: #282828;
+  --card: #ffffff;
+  --card-foreground: #282828;
+  --popover: #fcfbf8;
+  --popover-foreground: #282828;
+  --primary: #c79a42;
+  --primary-foreground: #fcfbf8;
+  --secondary: #e7e6e4;
+  --secondary-foreground: #282828;
+  --muted: #e7e6e4;
+  --muted-foreground: color-mix(in oklab, #282828 62%, transparent);
+  --accent: #f5f4f1;
+  --accent-foreground: #c79a42;
   --destructive: #b54a4a;
-  --destructive-foreground: #fffaff;
-  --border: color-mix(in oklab, #d4af37 22%, #2a2620);
-  --input: #1a1816;
-  --ring: #d4af37;
-  --chart-1: #d4af37;
-  --chart-2: #c9a227;
-  --chart-3: #8b7355;
-  --chart-4: #fffaff;
-  --chart-5: #4a3f2f;
+  --destructive-foreground: #fcfbf8;
+  --border: #e7e6e4;
+  --input: #e7e6e4;
+  --ring: #c79a42;
+  
+  --chart-1: #c79a42;
+  --chart-2: #b88d3d;
+  --chart-3: #8a6a2e;
+  --chart-4: #282828;
+  --chart-5: #e7e6e4;
+  
   --radius: 0.25rem;
-  --sidebar: #0a0908;
-  --sidebar-foreground: #fffaff;
-  --sidebar-primary: #d4af37;
-  --sidebar-primary-foreground: #0a0908;
-  --sidebar-accent: #1a1816;
-  --sidebar-accent-foreground: #d4af37;
-  --sidebar-border: color-mix(in oklab, #d4af37 22%, #2a2620);
-  --sidebar-ring: #d4af37;
+  
+  --sidebar: #fcfbf8;
+  --sidebar-foreground: #282828;
+  --sidebar-primary: #c79a42;
+  --sidebar-primary-foreground: #fcfbf8;
+  --sidebar-accent: #e7e6e4;
+  --sidebar-accent-foreground: #282828;
+  --sidebar-border: #e7e6e4;
+  --sidebar-ring: #c79a42;
+  
   --success: #3d6b5a;
-  --warning: #8b7355;
-  --error: #b54a4a;
-}
-
-[data-theme='light'] {
-  --background: #fffaff;
-  --foreground: #0a0908;
-  --card: #f7f4f0;
-  --card-foreground: #0a0908;
-  --popover: #fffaff;
-  --popover-foreground: #0a0908;
-  --primary: #d4af37;
-  --primary-foreground: #0a0908;
-  --secondary: #f0ebe3;
-  --secondary-foreground: #0a0908;
-  --muted: #f0ebe3;
-  --muted-foreground: color-mix(in oklab, #0a0908 55%, transparent);
-  --accent: #f7f0e0;
-  --accent-foreground: #0a0908;
-  --destructive: #b54a4a;
-  --destructive-foreground: #fffaff;
-  --border: color-mix(in oklab, #d4af37 30%, #e8e0d0);
-  --input: #f0ebe3;
-  --ring: #d4af37;
-  --sidebar: #fffaff;
-  --sidebar-foreground: #0a0908;
-  --sidebar-primary: #d4af37;
-  --sidebar-primary-foreground: #0a0908;
-  --sidebar-accent: #f0ebe3;
-  --sidebar-accent-foreground: #0a0908;
-  --sidebar-border: color-mix(in oklab, #d4af37 30%, #e8e0d0);
-  --sidebar-ring: #d4af37;
-  --success: #3d6b5a;
-  --warning: #8b7355;
+  --warning: #c79a42;
   --error: #b54a4a;
 }
 
 [data-theme='dark'] {
-  --background: #0a0908;
-  --foreground: #fffaff;
-  --card: #121110;
-  --card-foreground: #fffaff;
-  --popover: #0a0908;
-  --popover-foreground: #fffaff;
-  --primary: #d4af37;
-  --primary-foreground: #0a0908;
-  --secondary: #1a1816;
-  --secondary-foreground: #fffaff;
-  --muted: #1a1816;
-  --muted-foreground: color-mix(in oklab, #fffaff 62%, transparent);
-  --accent: #1f1c18;
-  --accent-foreground: #d4af37;
+  --gold: #c79a42;
+  --gold-foreground: #282828;
+  --charcoal: #282828;
+  --paper: #fcfbf8;
+  --platinum: #e7e6e4;
+
+  --background: #282828;
+  --foreground: #fcfbf8;
+  --card: #1f1f1f;
+  --card-foreground: #fcfbf8;
+  --popover: #282828;
+  --popover-foreground: #fcfbf8;
+  --primary: #c79a42;
+  --primary-foreground: #282828;
+  --secondary: #3b3b3b;
+  --secondary-foreground: #fcfbf8;
+  --muted: #3b3b3b;
+  --muted-foreground: color-mix(in oklab, #fcfbf8 62%, transparent);
+  --accent: #3b3b3b;
+  --accent-foreground: #c79a42;
   --destructive: #b54a4a;
-  --destructive-foreground: #fffaff;
-  --border: color-mix(in oklab, #d4af37 22%, #2a2620);
-  --input: #1a1816;
-  --ring: #d4af37;
-  --sidebar: #0a0908;
-  --sidebar-foreground: #fffaff;
-  --sidebar-primary: #d4af37;
-  --sidebar-primary-foreground: #0a0908;
-  --sidebar-accent: #1a1816;
-  --sidebar-accent-foreground: #d4af37;
-  --sidebar-border: color-mix(in oklab, #d4af37 22%, #2a2620);
-  --sidebar-ring: #d4af37;
-  --success: #3d6b5a;
-  --warning: #8b7355;
-  --error: #b54a4a;
+  --destructive-foreground: #fcfbf8;
+  --border: #3b3b3b;
+  --input: #3b3b3b;
+  --ring: #c79a42;
+  
+  --sidebar: #282828;
+  --sidebar-foreground: #fcfbf8;
+  --sidebar-primary: #c79a42;
+  --sidebar-primary-foreground: #282828;
+  --sidebar-accent: #3b3b3b;
+  --sidebar-accent-foreground: #fcfbf8;
+  --sidebar-border: #3b3b3b;
+  --sidebar-ring: #c79a42;
 }
 
 @theme inline {
@@ -294,8 +270,9 @@
   --color-warning: var(--warning);
   --color-error: var(--error);
   --color-gold: var(--gold);
-  --color-onyx: var(--onyx);
-  --color-bone: var(--bone);
+  --color-charcoal: var(--charcoal);
+  --color-paper: var(--paper);
+  --color-platinum: var(--platinum);
 }
 
 @layer base {

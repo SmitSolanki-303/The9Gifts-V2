@@ -4,7 +4,7 @@
 
 The Creative North Star for "The Gilded Atelier" is **"Bespoke Brilliance."**
 
-This design system marks a shift from functional modernist commerce to high-luxury editorial fashion. It is designed to evoke the feeling of a private, exclusive showroom. The interface is dramatic, high-contrast, and focused on the tactile quality of the products, using "The Gold Thread" as a consistent visual metaphor for artisan craftsmanship.
+This design system marks a shift from functional modernist commerce to high-luxury editorial fashion. It is designed to evoke the feeling of a private, exclusive showroom. The interface is elegant, clean, and focused on the tactile quality of the products, using a light paper-white canvas and a "Golden Thread" as a consistent visual metaphor for artisan craftsmanship.
 
 ---
 
@@ -12,11 +12,12 @@ This design system marks a shift from functional modernist commerce to high-luxu
 
 ### 2.1 Color Palette
 
-The palette is a strict, high-contrast duo-tone designed for maximum prestige and visual impact.
+The palette is a sophisticated, light-themed luxury aesthetic utilizing a soft paper-white background, sharp charcoal typography, and elegant golden accents.
 
-- **Primary/Accent:** Liquid Gold (`#D4AF37`) – Used for the brand monogram, key headlines, and primary CTAs. It represents the "standard of bespoke" and the quality of the materials.
-- **Surface:** Deep Onyx (`#0A0908`) – The primary canvas color. It provides a dramatic, dark backdrop that makes the golden accents and product photography pop.
-- **Neutral/Text:** Bone White (`#FFFAFF`) – Used sparingly for body copy and secondary information to ensure readability without diluting the dark theme.
+- **Background (Surface):** Paper White (`#fcfbf8`) – The primary canvas color. It provides a clean, airy, and luxurious backdrop, typical of high-end editorial fashion.
+- **Typography & Dark Elements:** Charcoal Black (`#282828`) – Used for primary text, deep borders, and contrasting elements. It offers excellent readability against the light background.
+- **Primary/Accent:** Golden Heritage (`#c79a42`) – The primary brand color. Used for the logo, key headlines, primary CTAs, and delicate borders. It adds warmth and bespoke brilliance.
+- **Neutral/Secondary:** Platinum Gray (`#e7e6e4`) – Used for secondary backgrounds, muted borders, and subtle structural separations.
 
 ### 2.2 Typography
 
@@ -26,7 +27,7 @@ The palette is a strict, high-contrast duo-tone designed for maximum prestige an
 ### 2.3 Iconography & Imagery
 
 - **Style:** Ultra-minimalist, thin-stroke icons in gold.
-- **Imagery:** High-fashion, low-key lighting. Photography should emphasize texture (silk, leather, gold detail) and use dark, atmospheric backgrounds to maintain the "Atelier" mood.
+- **Imagery:** High-fashion, low-key or natural lighting. Photography should emphasize texture (silk, leather, gold detail) and use clean, airy backgrounds to maintain the "Atelier" mood.
 
 ---
 
@@ -48,12 +49,12 @@ The palette is a strict, high-contrast duo-tone designed for maximum prestige an
 
 ### 4.1 The Atelier Header
 
-- **Composition:** Centered 'J' Monogram in liquid gold.
-- **Navigation:** Minimalist text links in Bone White, using wide-tracked Manrope.
+- **Composition:** Centered 'J' Monogram in golden heritage.
+- **Navigation:** Minimalist text links in Charcoal Black, using wide-tracked Manrope.
 
 ### 4.2 Gilded CTAs
 
-- **Style:** Solid Liquid Gold backgrounds with Onyx text for primary actions; gold-bordered "ghost" buttons for secondary actions.
+- **Style:** Solid Golden Heritage backgrounds with Paper White text for primary actions; gold-bordered "ghost" buttons for secondary actions.
 - **Interactions:** Subtle scale transitions and "shimmer" effects.
 
 ### 4.3 Product Presentation
