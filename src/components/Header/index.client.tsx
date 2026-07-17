@@ -1,16 +1,23 @@
 'use client'
-import { CMSLink } from '@/components/Link'
 import { Cart } from '@/components/Cart'
 import { OpenCartButton } from '@/components/Cart/OpenCart'
 import Link from 'next/link'
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 
-import { MobileMenu } from './MobileMenu'
 import type { Header } from 'src/payload-types'
-
 import { LogoIcon } from '@/components/icons/logo'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/utilities/cn'
+import { CMSLink } from '@/components/Link'
+
+import {
+  Navbar,
+  NavBody,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+} from '@/components/ui/resizable-navbar'
 
 type Props = {
   header: Header
@@ -19,27 +26,76 @@ type Props = {
 export function HeaderClient({ header }: Props) {
   const menu = header.navItems || []
   const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="sticky top-0 z-30 w-full">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-background/90 to-transparent" />
-      <nav className="relative container flex items-center justify-between py-4 md:py-5">
-        {/* Mobile menu */}
-        <div className="flex flex-1 items-center md:hidden">
-          <Suspense fallback={null}>
-            <MobileMenu menu={menu} />
+    <Navbar className="!top-4">
+      <NavBody>
+        <Link
+          className="group relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
+          href="/"
+          aria-label="The9Gifts home"
+        >
+          <LogoIcon className="h-8 w-8 transition-transform duration-300 group-hover:scale-105 glow-gold-sm rounded-full" />
+          <span className="hidden font-medium uppercase tracking-atelier text-primary/90 sm:block">
+            The9Gifts
+          </span>
+        </Link>
+        
+        {/* Desktop Links using CMSLink */}
+        <div className="hidden flex-1 flex-row items-center justify-center space-x-4 lg:flex lg:space-x-8">
+          {menu.map((item, idx) => (
+            <CMSLink
+              key={idx}
+              {...item.link}
+              size="clear"
+              className={cn('navLink relative pb-1 text-foreground/80 hover:text-primary transition-colors', {
+                active:
+                  item.link.url && item.link.url !== '/'
+                    ? pathname.includes(item.link.url)
+                    : pathname === '/',
+              })}
+              appearance="nav"
+            />
+          ))}
+        </div>
+        
+        <div className="relative z-20 flex items-center gap-4">
+          <Suspense fallback={<OpenCartButton />}>
+            <Cart />
           </Suspense>
         </div>
+      </NavBody>
 
-        {/* Desktop left nav */}
-        <div className="hidden flex-1 items-center gap-8 md:flex">
-          {menu.length
-            ? menu.slice(0, Math.ceil(menu.length / 2)).map((item) => (
+      <MobileNav>
+        <MobileNavHeader>
+          <Link
+            className="group relative z-20 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
+            href="/"
+            aria-label="The9Gifts home"
+          >
+            <LogoIcon className="h-8 w-8 glow-gold-sm rounded-full" />
+            <span className="font-medium uppercase tracking-atelier text-primary/90">
+              The9Gifts
+            </span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <Suspense fallback={<OpenCartButton />}>
+              <Cart />
+            </Suspense>
+            <MobileNavToggle isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+          </div>
+        </MobileNavHeader>
+        
+        <MobileNavMenu isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          {/* Mobile Links using CMSLink */}
+          <div className="flex flex-col gap-4">
+            {menu.map((item, idx) => (
+              <div key={idx} onClick={() => setIsOpen(false)}>
                 <CMSLink
-                  key={item.id}
                   {...item.link}
                   size="clear"
-                  className={cn('navLink relative pb-1 text-foreground/80', {
+                  className={cn('text-lg font-medium text-foreground hover:text-primary transition-colors', {
                     active:
                       item.link.url && item.link.url !== '/'
                         ? pathname.includes(item.link.url)
@@ -47,47 +103,11 @@ export function HeaderClient({ header }: Props) {
                   })}
                   appearance="nav"
                 />
-              ))
-            : null}
-        </div>
-
-        {/* Centered monogram */}
-        <Link
-          className="group flex flex-col items-center justify-center px-4"
-          href="/"
-          aria-label="The9Gifts home"
-        >
-          <LogoIcon className="h-10 w-10 transition-transform duration-300 group-hover:scale-105 glow-gold-sm rounded-full" />
-          <span className="mt-1 hidden text-[10px] uppercase tracking-atelier text-primary/90 sm:block">
-            The9Gifts
-          </span>
-        </Link>
-
-        {/* Desktop right nav + cart */}
-        <div className="flex flex-1 items-center justify-end gap-6 md:gap-8">
-          <div className="hidden items-center gap-8 md:flex">
-            {menu.length
-              ? menu.slice(Math.ceil(menu.length / 2)).map((item) => (
-                  <CMSLink
-                    key={item.id}
-                    {...item.link}
-                    size="clear"
-                    className={cn('navLink relative pb-1 text-foreground/80', {
-                      active:
-                        item.link.url && item.link.url !== '/'
-                          ? pathname.includes(item.link.url)
-                          : false,
-                    })}
-                    appearance="nav"
-                  />
-                ))
-              : null}
+              </div>
+            ))}
           </div>
-          <Suspense fallback={<OpenCartButton />}>
-            <Cart />
-          </Suspense>
-        </div>
-      </nav>
-    </div>
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
   )
 }
