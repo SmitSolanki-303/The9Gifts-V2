@@ -5,27 +5,27 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Gift, Sparkles, Crown } from 'lucide-react'
+import { Gift, Printer, Crown } from 'lucide-react'
 import React from 'react'
 
 const pillars = [
   {
-    icon: Crown,
-    title: 'Curated Exclusivity',
+    icon: Printer,
+    title: 'Bespoke Printed Products',
     description:
-      'Each piece is selected for its material integrity and narrative weight — never mass, always meaningful.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Artisan Finish',
-    description:
-      'From silk threads to gilded detail, every surface is finished with the patience of a private atelier.',
+      'From custom t-shirts and apparel to personalized bottles and books, bring your unique vision to life with artisan-grade printing.',
   },
   {
     icon: Gift,
-    title: 'Ceremony Ready',
+    title: 'Curated Gift Hampers',
     description:
-      'Presentation is part of the gift. Packaging, proportion, and presence are designed as one experience.',
+      'Elevate corporate gifting and festive seasons with our meticulously crafted hampers, designed to leave an unforgettable impression.',
+  },
+  {
+    icon: Crown,
+    title: 'The Gilded Standard',
+    description:
+      'Every product we create is treated with the patience of a private atelier, ensuring premium quality and true elegance in every detail.',
   },
 ]
 
@@ -34,10 +34,9 @@ export function LandingPillars() {
     <section className="container py-20 md:py-28" id="atelier">
       <div className="mx-auto mb-14 max-w-2xl text-center">
         <p className="mb-3 text-[11px] uppercase tracking-atelier text-primary">The Standard</p>
-        <h2 className="font-serif text-3xl text-foreground md:text-5xl">Crafted for presence</h2>
+        <h2 className="font-serif text-3xl text-foreground md:text-5xl">Crafted for the occasion</h2>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          The Gold Thread runs through everything we make — a visual metaphor for artisan
-          craftsmanship and the quiet confidence of true quality.
+          Whether you are designing custom apparel for your brand or selecting the perfect festive hamper, the Golden Thread runs through everything we make.
         </p>
       </div>
 

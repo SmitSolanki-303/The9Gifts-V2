@@ -9,19 +9,19 @@ import React from 'react'
 const faqs = [
   {
     q: 'What makes The9Gifts different?',
-    a: 'We curate a focused collection rather than an endless catalog. Each gift is chosen for material quality, presentation, and emotional presence — the feeling of a private atelier, not a marketplace.',
+    a: 'We specialize in high-quality, artisan-grade custom printing and meticulously curated gift hampers. Our focus is on premium materials and unforgettable presentation, whether for a single bespoke t-shirt or a bulk corporate order.',
   },
   {
-    q: 'Do you ship internationally?',
-    a: 'Yes. Orders ship worldwide with careful packaging designed to protect both the object and the unboxing experience. Shipping options are shown at checkout.',
+    q: 'Do you handle bulk corporate gifting?',
+    a: 'Yes, we specialize in corporate hampers and bulk custom printed products. Contact us directly for personalized business solutions, branded packaging, and volume pricing.',
   },
   {
-    q: 'Can I request bespoke packaging?',
-    a: 'Select pieces can be prepared with elevated presentation. Contact us through your account or order notes to discuss ceremony-ready packing for special occasions.',
+    q: 'Can I customize the items in a gift hamper?',
+    a: 'Absolutely. While we offer beautifully pre-curated festive and seasonal hampers, we also provide options to fully customize the contents and branding to suit your specific occasion.',
   },
   {
-    q: 'How do I manage my order?',
-    a: 'Create an account to track orders and save addresses, or use Find my order with your order ID and email for guest purchases.',
+    q: 'How long does custom printing take?',
+    a: 'Most custom printed apparel, books, and bottles are crafted and ready within 3-5 business days. Bulk or highly specialized orders may require additional time. You can easily track your order status in your account.',
   },
 ]
 

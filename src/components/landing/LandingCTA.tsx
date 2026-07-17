@@ -11,8 +11,8 @@ type Props = {
 }
 
 export function LandingCTA({
-  title = 'Begin the ritual of giving',
-  description = 'Step into the showroom. Discover pieces finished with liquid gold intent and staged for the moments that matter.',
+  title = 'Create your perfect gift',
+  description = 'Start customizing your premium apparel and drinkware today, or contact us for bespoke corporate hampers designed to impress.',
   primaryCta = { label: 'Shop the Collection', href: '/shop' },
   secondaryCta = { label: 'Create Account', href: '/create-account' },
 }: Props) {
@@ -22,7 +22,7 @@ export function LandingCTA({
         <CardContent className="relative flex flex-col items-center px-6 py-16 text-center md:px-12 md:py-20">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.1),transparent_60%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(199,154,66,0.15),transparent_60%)]"
           />
           <p className="relative mb-3 text-[11px] uppercase tracking-atelier text-primary">
             Invitation

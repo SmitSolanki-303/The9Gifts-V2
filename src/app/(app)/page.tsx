@@ -45,10 +45,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     ...meta,
-    title: meta.title || 'The9Gifts | Bespoke Brilliance',
+    title: meta.title || 'The9Gifts | Bespoke Printed Products & Hampers',
     description:
       meta.description ||
-      'A private atelier of nine curated gifts — liquid gold intent, deep onyx stage, and artisan craftsmanship.',
+      'The9Gifts offers premium customizable printed products and bespoke gift hampers for special occasions, corporate gifting, and festive celebrations.',
   }
 }
 
@@ -119,10 +119,10 @@ function extractTextFromLexical(node: unknown): string {
 
 function extractHeroCopy(page: Page | null) {
   const fallback = {
-    eyebrow: 'The Gilded Atelier',
-    title: 'Bespoke Brilliance',
+    eyebrow: 'Premium Customizable Gifts',
+    title: 'Bespoke Brilliance by The9Gifts',
     subtitle:
-      'Nine curated gifts. One unforgettable impression. Discover an exclusive collection crafted for those who value presence, ceremony, and the quiet luxury of the well-chosen object.',
+      'Elevate every occasion. Discover our curated collection of customizable printed products—from bespoke apparel and bottles to premium gift hampers for business and festive celebrations.',
     primaryCta: { label: 'Explore the Collection', href: '/shop' },
     secondaryCta: { label: 'Our Story', href: '#atelier' },
   }
@@ -154,7 +154,7 @@ function extractHeroCopy(page: Page | null) {
   const secondary = links[1]?.link
 
   return {
-    eyebrow: 'The Gilded Atelier',
+    eyebrow: 'Premium Customizable Gifts',
     title,
     subtitle,
     primaryCta: primary?.url
