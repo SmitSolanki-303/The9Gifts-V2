@@ -2,8 +2,6 @@
 
 ## 1. Overview & Creative North Star
 
-The Creative North Star for "The Gilded Atelier" is **"Bespoke Brilliance."**
-
 This design system marks a shift from functional modernist commerce to high-luxury editorial fashion. It is designed to evoke the feeling of a private, exclusive showroom. The interface is elegant, clean, and focused on the tactile quality of the products, using a light paper-white canvas and a "Golden Thread" as a consistent visual metaphor for artisan craftsmanship.
 
 ---
