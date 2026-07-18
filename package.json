@@ -110,7 +110,10 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "sharp"
+      "sharp",
+      "esbuild",
+      "@vercel/git-hooks",
+      "unrs-resolver"
     ]
   }
 }
