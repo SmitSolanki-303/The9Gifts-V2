@@ -16,11 +16,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useMemo, useState } from 'react'
 
+import { Button } from '@/components/ui/button'
+import { Product } from '@/payload-types'
 import { DeleteItemButton } from './DeleteItemButton'
 import { EditItemQuantityButton } from './EditItemQuantityButton'
 import { OpenCartButton } from './OpenCart'
-import { Button } from '@/components/ui/button'
-import { Product } from '@/payload-types'
 
 export function CartModal() {
   const { cart } = useCart()
@@ -85,20 +85,25 @@ export function CartModal() {
                   if (isVariant) {
                     price = variant?.priceInUSD
 
-                    const imageVariant = product.gallery?.find((item) => {
-                      if (!item.variantOption) return false
-                      const variantOptionID =
-                        typeof item.variantOption === 'object'
-                          ? item.variantOption.id
-                          : item.variantOption
+                    const imageVariant = product.gallery?.find(
+                      (item: NonNullable<Product['gallery']>[0]) => {
+                        if (!item.variantOption) return false
+                        const variantOptionID =
+                          typeof item.variantOption === 'object'
+                            ? item.variantOption.id
+                            : item.variantOption
 
-                      const hasMatch = variant?.options?.some((option) => {
-                        if (typeof option === 'object') return option.id === variantOptionID
-                        else return option === variantOptionID
-                      })
+                        const hasMatch = variant?.options?.some(
+                          (option: { id: string | number } | string | number) => {
+                            if (typeof option === 'object' && option !== null)
+                              return String(option.id) === String(variantOptionID)
+                            else return String(option) === String(variantOptionID)
+                          },
+                        )
 
-                      return hasMatch
-                    })
+                        return hasMatch
+                      },
+                    )
 
                     if (imageVariant && typeof imageVariant.image === 'object') {
                       image = imageVariant.image
@@ -132,8 +137,8 @@ export function CartModal() {
                             {isVariant && variant ? (
                               <p className="text-sm text-neutral-500 dark:text-neutral-400 capitalize">
                                 {variant.options
-                                  ?.map((option) => {
-                                    if (typeof option === 'object') return option.label
+                                  ?.map((option: { label?: string; id?: string | number } | string | number | null) => {
+                                    if (typeof option === 'object' && option !== null) return option.label
                                     return null
                                   })
                                   .join(', ')}
