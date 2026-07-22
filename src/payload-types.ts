@@ -492,6 +492,7 @@ export interface Page {
     | EcomHeroBlock
     | OccasionsBlock
     | PromoSliderBlock
+    | TestimonialsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -958,6 +959,25 @@ export interface PromoSliderBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  autoplay?: boolean | null;
+  testimonials: {
+    quote: string;
+    name: string;
+    designation: string;
+    image: number | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "variants".
  */
 export interface Variant {
@@ -1313,6 +1333,7 @@ export interface PagesSelect<T extends boolean = true> {
         ecomHero?: T | EcomHeroBlockSelect<T>;
         occasions?: T | OccasionsBlockSelect<T>;
         promoSlider?: T | PromoSliderBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1525,6 +1546,26 @@ export interface PromoSliderBlockSelect<T extends boolean = true> {
     | {
         image?: T;
         link?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  autoplay?: T;
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        name?: T;
+        designation?: T;
+        image?: T;
         id?: T;
       };
   id?: T;

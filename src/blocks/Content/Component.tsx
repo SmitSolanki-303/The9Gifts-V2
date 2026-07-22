@@ -1,8 +1,8 @@
-import { cn } from '@/utilities/cn'
-import React from 'react'
 import { RichText } from '@/components/RichText'
-import type { DefaultDocumentIDType } from 'payload'
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
+import { cn } from '@/utilities/cn'
+import type { DefaultDocumentIDType } from 'payload'
+import React from 'react'
 
 import { CMSLink } from '../../components/Link'
 
@@ -22,27 +22,33 @@ export const ContentBlock: React.FC<
   }
 
   return (
-    <section className="w-full my-16">
+    <section className="w-full">
       <div className="container mx-auto">
         <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">
-        {columns &&
-          columns.length > 0 &&
-          columns.map((col, index) => {
-            const { enableLink, link, richText, size } = col
+          {columns &&
+            columns.length > 0 &&
+            columns.map((col, index) => {
+              const { enableLink, link, richText, size } = col
 
-            return (
-              <div
-                className={cn(`col-span-4 lg:col-span-${colsSpanClasses[size!]}`, {
-                  'md:col-span-2': size !== 'full',
-                })}
-                key={index}
-              >
-                {richText && <RichText className="prose-headings:font-display prose-headings:font-light prose-p:font-body" data={richText} enableGutter={false} />}
+              return (
+                <div
+                  className={cn(`col-span-4 lg:col-span-${colsSpanClasses[size!]}`, {
+                    'md:col-span-2': size !== 'full',
+                  })}
+                  key={index}
+                >
+                  {richText && (
+                    <RichText
+                      className="prose-headings:font-display prose-headings:font-light prose-p:font-body"
+                      data={richText}
+                      enableGutter={false}
+                    />
+                  )}
 
-                {enableLink && <CMSLink className="rounded-pill mt-4 inline-block" {...link} />}
-              </div>
-            )
-          })}
+                  {enableLink && <CMSLink className="rounded-pill mt-4 inline-block" {...link} />}
+                </div>
+              )
+            })}
         </div>
       </div>
     </section>

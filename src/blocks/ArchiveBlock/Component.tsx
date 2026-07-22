@@ -1,9 +1,9 @@
-import type { Product, ArchiveBlock as ArchiveBlockProps } from '@/payload-types'
+import type { ArchiveBlock as ArchiveBlockProps, Product } from '@/payload-types'
 
+import { RichText } from '@/components/RichText'
 import configPromise from '@payload-config'
 import { DefaultDocumentIDType, getPayload } from 'payload'
 import React from 'react'
-import { RichText } from '@/components/RichText'
 
 import { CollectionArchive } from '@/components/CollectionArchive'
 
@@ -54,7 +54,7 @@ export const ArchiveBlock: React.FC<
   }
 
   return (
-    <section className="w-full my-16" id={`block-${id}`}>
+    <section className="w-full" id={`block-${id}`}>
       <div className="container mx-auto">
         <div className="w-full">
           {introContent && (

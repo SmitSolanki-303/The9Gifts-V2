@@ -10,6 +10,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { OccasionsBlock } from '@/blocks/Occasions/Component'
 import { PromoSliderBlock } from '@/blocks/PromoSlider/Component'
+import { TestimonialsBlock } from '@/blocks/Testimonials/Component'
 import { ThreeItemGridBlock } from '@/blocks/ThreeItemGrid/Component'
 import { toKebabCase } from '@/utilities/toKebabCase'
 import React, { Fragment } from 'react'
@@ -30,6 +31,7 @@ const blockComponents = {
   ecomHero: EcomHeroBlock,
   occasions: OccasionsBlock,
   promoSlider: PromoSliderBlock,
+  testimonials: TestimonialsBlock,
 }
 
 export const RenderBlocks: React.FC<{
@@ -50,11 +52,11 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div key={index}>
+                <Fragment key={index}>
                   {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
                   {/* @ts-ignore - weird type mismatch here */}
                   <Block id={toKebabCase(blockName!)} {...block} />
-                </div>
+                </Fragment>
               )
             }
           }
