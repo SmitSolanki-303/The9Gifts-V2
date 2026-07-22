@@ -1,13 +1,12 @@
-import type { Metadata } from 'next'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { homeStaticData } from '@/endpoints/seed/home-static'
+import { RenderHero } from '@/heros/RenderHero'
 import type { Page } from '@/payload-types'
 import { generateMeta } from '@/utilities/generateMeta'
 import configPromise from '@payload-config'
+import type { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { getPayload } from 'payload'
-import React from 'react'
-import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { RenderHero } from '@/heros/RenderHero'
 
 export default async function HomePage() {
   const page = await queryHomePage()
@@ -17,10 +16,10 @@ export default async function HomePage() {
   }
 
   return (
-    <article className="pt-8 pb-24">
+    <>
       <RenderHero {...page.hero} />
       <RenderBlocks blocks={page.layout} />
-    </article>
+    </>
   )
 }
 
@@ -62,5 +61,3 @@ async function queryHomePage(): Promise<Page> {
     return homeStaticData() as Page
   }
 }
-
-
