@@ -17,14 +17,14 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
 
   return (
     <div
-      className="relative -mt-[6rem] flex min-h-[88vh] items-center justify-center text-foreground"
+      className="relative flex flex-col bg-background text-foreground pb-24"
       data-theme="dark"
     >
-      <div className="container relative z-10 mb-8 flex items-center justify-center">
-        <div className="max-w-3xl text-center">
+      <div className="container relative z-10 flex flex-col items-center justify-center pt-32 pb-16">
+        <div className="max-w-4xl text-center">
           {richText && (
             <RichText
-              className="mb-8 prose-headings:font-serif prose-headings:text-primary prose-p:text-muted-foreground"
+              className="mb-12 prose-headings:font-display prose-headings:font-light prose-headings:text-5xl md:prose-headings:text-7xl lg:prose-headings:text-[96px] prose-headings:leading-none prose-headings:tracking-[2.4px] prose-headings:text-foreground prose-p:font-body prose-p:text-lg prose-p:text-muted-foreground"
               data={richText}
               enableGutter={false}
             />
@@ -42,13 +42,12 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
           )}
         </div>
       </div>
-      <div className="absolute inset-0 min-h-[88vh] select-none">
-        {media && typeof media === 'object' && (
-          <Media fill imgClassName="-z-10 object-cover opacity-40" priority resource={media} />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/40" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.12),transparent_55%)]" />
-      </div>
+      
+      {media && typeof media === 'object' && (
+        <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden select-none">
+          <Media fill imgClassName="object-cover" priority resource={media} />
+        </div>
+      )}
     </div>
   )
 }

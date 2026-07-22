@@ -6,26 +6,26 @@ import { Header } from '@/components/Header'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
-import { Manrope, Playfair_Display } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import React from 'react'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-space-grotesk',
   display: 'swap',
 })
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-manrope',
+  variable: '--font-inter',
   display: 'swap',
 })
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
-      className={[playfair.variable, manrope.variable].filter(Boolean).join(' ')}
+      className={[spaceGrotesk.variable, inter.variable].filter(Boolean).join(' ')}
       lang="en"
       suppressHydrationWarning
     >

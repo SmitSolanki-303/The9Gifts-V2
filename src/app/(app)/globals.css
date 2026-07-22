@@ -43,9 +43,9 @@
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 86rem;
-  --font-mono: var(--font-manrope);
-  --font-sans: var(--font-manrope);
-  --font-serif: var(--font-playfair);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
 }
 
 @layer utilities {
@@ -54,180 +54,99 @@
     margin-inline: auto;
     padding-inline: 1rem;
   }
+  @variant sm { .container { max-width: var(--breakpoint-sm); } }
+  @variant md { .container { max-width: var(--breakpoint-md); padding-inline: 2rem; } }
+  @variant lg { .container { max-width: var(--breakpoint-lg); } }
+  @variant xl { .container { max-width: var(--breakpoint-xl); } }
+  @variant 2xl { .container { max-width: var(--breakpoint-2xl); } }
 
-  @variant sm {
-    .container {
-      max-width: var(--breakpoint-sm);
-    }
+  .font-display { font-family: var(--font-space-grotesk), "Helvetica Now Display", Helvetica, Arial, sans-serif; }
+  .font-body { font-family: var(--font-inter), "Inter Variable", Inter, Helvetica, Arial, sans-serif; }
+
+  .text-gold { color: var(--gold); }
+  .bg-gold { background-color: var(--gold); }
+  .border-gold { border-color: var(--gold); }
+  
+  .shadow-layered-light {
+    box-shadow: 0 8px 8px rgba(0,0,0,0.1), 0 4px 4px rgba(0,0,0,0.1), 0 2px 2px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.1);
   }
-
-  @variant md {
-    .container {
-      max-width: var(--breakpoint-md);
-      padding-inline: 2rem;
-    }
-  }
-
-  @variant lg {
-    .container {
-      max-width: var(--breakpoint-lg);
-    }
-  }
-
-  @variant xl {
-    .container {
-      max-width: var(--breakpoint-xl);
-    }
-  }
-
-  @variant 2xl {
-    .container {
-      max-width: var(--breakpoint-2xl);
-    }
-  }
-
-  .font-serif {
-    font-family: var(--font-playfair), ui-serif, Georgia, serif;
-  }
-
-  .font-body {
-    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  }
-
-  .tracking-atelier {
-    letter-spacing: 0.2em;
-  }
-
-  .text-gold {
-    color: var(--gold);
-  }
-
-  .bg-gold {
-    background-color: var(--gold);
-  }
-
-  .border-gold {
-    border-color: var(--gold);
-  }
-
-  .glow-gold {
-    box-shadow: 0 0 24px color-mix(in oklab, var(--gold) 35%, transparent);
-  }
-
-  .glow-gold-sm {
-    box-shadow: 0 0 12px color-mix(in oklab, var(--gold) 25%, transparent);
-  }
-
-  .shimmer-gold {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .shimmer-gold::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      110deg,
-      transparent 25%,
-      color-mix(in oklab, white 28%, transparent) 50%,
-      transparent 75%
-    );
-    transform: translateX(-100%);
-    transition: transform 0.7s ease;
-  }
-
-  .shimmer-gold:hover::after {
-    transform: translateX(100%);
+  .shadow-inset-dark {
+    box-shadow: 0 1px 2px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04);
   }
 }
 
-/* The Gilded Atelier — paper white base, golden heritage accent, charcoal black text */
+/* Base Light Theme (Transactional) */
 :root,
 [data-theme='light'] {
   --gold: #c79a42;
-  --gold-foreground: #fcfbf8;
-  --charcoal: #282828;
-  --paper: #fcfbf8;
-  --platinum: #e7e6e4;
+  --black: #000000;
+  --white: #ffffff;
+  --cream: #fbfbf5;
 
-  --background: #fcfbf8;
-  --foreground: #282828;
-  --card: #ffffff;
-  --card-foreground: #282828;
-  --popover: #fcfbf8;
-  --popover-foreground: #282828;
-  --primary: #c79a42;
-  --primary-foreground: #fcfbf8;
-  --secondary: #e7e6e4;
-  --secondary-foreground: #282828;
-  --muted: #e7e6e4;
-  --muted-foreground: color-mix(in oklab, #282828 62%, transparent);
-  --accent: #f5f4f1;
-  --accent-foreground: #c79a42;
+  --background: var(--white);
+  --foreground: var(--black);
+  
+  --card: var(--white);
+  --card-foreground: var(--black);
+  
+  --popover: var(--white);
+  --popover-foreground: var(--black);
+  
+  --primary: var(--gold);
+  --primary-foreground: var(--black);
+  
+  --secondary: #e4e4e7;
+  --secondary-foreground: var(--black);
+  
+  --muted: #fbfbf5;
+  --muted-foreground: #52525b;
+  
+  --accent: #f5ecd6; /* Lighter gold instead of aloe */
+  --accent-foreground: var(--black);
+  
   --destructive: #b54a4a;
-  --destructive-foreground: #fcfbf8;
-  --border: #e7e6e4;
-  --input: #e7e6e4;
-  --ring: #c79a42;
-
-  --chart-1: #c79a42;
-  --chart-2: #b88d3d;
-  --chart-3: #8a6a2e;
-  --chart-4: #282828;
-  --chart-5: #e7e6e4;
+  --destructive-foreground: var(--white);
+  
+  --border: #e4e4e7;
+  --input: var(--white);
+  --ring: var(--black);
 
   --radius: 0.25rem;
-
-  --sidebar: #fcfbf8;
-  --sidebar-foreground: #282828;
-  --sidebar-primary: #c79a42;
-  --sidebar-primary-foreground: #fcfbf8;
-  --sidebar-accent: #e7e6e4;
-  --sidebar-accent-foreground: #282828;
-  --sidebar-border: #e7e6e4;
-  --sidebar-ring: #c79a42;
-
-  --success: #3d6b5a;
-  --warning: #c79a42;
-  --error: #b54a4a;
 }
 
+/* Dark Theme (Cinematic Track) */
 [data-theme='dark'] {
   --gold: #c79a42;
-  --gold-foreground: #282828;
-  --charcoal: #282828;
-  --paper: #fcfbf8;
-  --platinum: #e7e6e4;
+  --black: #000000;
+  --white: #ffffff;
 
-  --background: #282828;
-  --foreground: #fcfbf8;
-  --card: #1f1f1f;
-  --card-foreground: #fcfbf8;
-  --popover: #282828;
-  --popover-foreground: #fcfbf8;
-  --primary: #c79a42;
-  --primary-foreground: #282828;
-  --secondary: #3b3b3b;
-  --secondary-foreground: #fcfbf8;
-  --muted: #3b3b3b;
-  --muted-foreground: color-mix(in oklab, #fcfbf8 62%, transparent);
-  --accent: #3b3b3b;
-  --accent-foreground: #c79a42;
+  --background: var(--black);
+  --foreground: var(--white);
+  
+  --card: #0a0a0a;
+  --card-foreground: var(--white);
+  
+  --popover: var(--black);
+  --popover-foreground: var(--white);
+  
+  --primary: var(--white);
+  --primary-foreground: var(--black);
+  
+  --secondary: #1e2c31;
+  --secondary-foreground: var(--white);
+  
+  --muted: #0a0a0a;
+  --muted-foreground: #a1a1aa;
+  
+  --accent: #1e2c31;
+  --accent-foreground: var(--white);
+  
   --destructive: #b54a4a;
-  --destructive-foreground: #fcfbf8;
-  --border: #3b3b3b;
-  --input: #3b3b3b;
-  --ring: #c79a42;
-
-  --sidebar: #282828;
-  --sidebar-foreground: #fcfbf8;
-  --sidebar-primary: #c79a42;
-  --sidebar-primary-foreground: #282828;
-  --sidebar-accent: #3b3b3b;
-  --sidebar-accent-foreground: #fcfbf8;
-  --sidebar-border: #3b3b3b;
-  --sidebar-ring: #c79a42;
+  --destructive-foreground: var(--white);
+  
+  --border: #1e2c31;
+  --input: var(--black);
+  --ring: var(--white);
 }
 
 @theme inline {
@@ -250,30 +169,11 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: 0px;
-  --radius-md: 2px;
-  --radius-lg: 4px;
-  --radius-xl: 4px;
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-success: var(--success);
-  --color-warning: var(--warning);
-  --color-error: var(--error);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
   --color-gold: var(--gold);
-  --color-charcoal: var(--charcoal);
-  --color-paper: var(--paper);
-  --color-platinum: var(--platinum);
 }
 
 @layer base {
@@ -282,37 +182,21 @@
   }
   body {
     @apply bg-background text-foreground font-body min-h-[100vh] flex flex-col antialiased;
+    font-feature-settings: "ss03";
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-space-grotesk), "Helvetica Now Display", Helvetica, Arial, sans-serif;
+    font-feature-settings: "ss03";
   }
 }
 
 html {
   opacity: 0;
 }
-
 html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
-
-a,
-input,
-button {
+a, input, button {
   @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
-}
-
-/* Promo Slider Custom Styles */
-.promo-swiper-container {
-  --swiper-pagination-color: var(--gold);
-}
-
-.promo-swiper-container .swiper-pagination-bullet-active {
-  background-color: var(--gold) !important;
 }

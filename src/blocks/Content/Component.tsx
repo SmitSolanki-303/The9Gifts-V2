@@ -37,9 +37,9 @@ export const ContentBlock: React.FC<
                 })}
                 key={index}
               >
-                {richText && <RichText data={richText} enableGutter={false} />}
+                {richText && <RichText className="prose-headings:font-display prose-headings:font-light prose-p:font-body" data={richText} enableGutter={false} />}
 
-                {enableLink && <CMSLink {...link} />}
+                {enableLink && <CMSLink className="rounded-pill mt-4 inline-block" {...link} />}
               </div>
             )
           })}

@@ -78,11 +78,11 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
-        backgroundColor: visible ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0)',
-        backdropFilter: visible ? 'blur(12px)' : 'blur(0px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(12px)',
         boxShadow: visible
-          ? '0 8px 32px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(199, 154, 66, 0.15)'
-          : 'none',
+          ? '0 12px 32px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(199, 154, 66, 0.25)'
+          : '0 4px 12px -4px rgba(0,0,0,0.05), 0 0 0 1px rgba(199, 154, 66, 0.15)',
         maxWidth: visible ? '800px' : '1280px',
         y: visible ? 10 : 0,
       }}
@@ -92,7 +92,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         damping: 40,
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full flex-row items-center justify-between self-start rounded-full px-6 py-3 lg:flex',
+        'relative z-[60] mx-auto hidden w-full grid-cols-3 items-center self-start rounded-pill px-8 py-3 lg:grid',
         className,
       )}
     >
@@ -139,12 +139,12 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       <div className="container mx-auto">
         <motion.div
           animate={{
-            backgroundColor: visible ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0)',
-            backdropFilter: visible ? 'blur(12px)' : 'blur(0px)',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(12px)',
             boxShadow: visible
-              ? '0 8px 32px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(199, 154, 66, 0.15)'
-              : 'none',
-            borderRadius: visible ? '2rem' : '0px',
+              ? '0 12px 32px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(199, 154, 66, 0.25)'
+              : '0 4px 12px -4px rgba(0,0,0,0.05), 0 0 0 1px rgba(199, 154, 66, 0.15)',
+            borderRadius: '9999px',
             y: visible ? 10 : 0,
           }}
           transition={{
@@ -153,7 +153,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
             damping: 40,
           }}
           className={cn(
-            'relative z-50 mx-auto flex w-full flex-col items-center justify-between  py-3',
+            'relative z-50 mx-auto flex w-full flex-col items-center justify-between px-6 py-3',
             className,
           )}
         >

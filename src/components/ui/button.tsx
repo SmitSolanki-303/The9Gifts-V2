@@ -5,22 +5,22 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/utilities/cn'
 
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center hover:cursor-pointer gap-2 whitespace-nowrap text-sm font-medium transition-[color,box-shadow,transform,background-color,border-color] duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive rounded-[2px]",
+  "relative inline-flex items-center justify-center hover:cursor-pointer gap-2 whitespace-nowrap text-sm font-medium transition-[color,box-shadow,transform,background-color,border-color] duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive rounded-full",
   {
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 hover:scale-[1.02] shimmer-gold glow-gold-sm uppercase tracking-atelier font-body text-xs',
+          'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 hover:scale-[1.02] font-body text-[16px]',
         destructive:
-          'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40',
+          'bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40',
         outline:
-          'border border-primary bg-transparent text-primary shadow-xs hover:bg-primary hover:text-primary-foreground hover:scale-[1.02] uppercase tracking-atelier font-body text-xs',
+          'border-2 border-foreground bg-transparent text-foreground shadow-xs hover:bg-foreground hover:text-background hover:scale-[1.02] font-body text-[16px]',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80 uppercase tracking-atelier font-body text-xs',
+          'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80 font-body text-[16px]',
         ghost:
-          'text-foreground/70 hover:text-primary [&.active]:text-primary py-2 px-4 uppercase font-body tracking-atelier text-xs',
+          'text-foreground/70 hover:text-primary [&.active]:text-primary py-2 px-4 font-body text-[16px]',
         link: 'text-primary underline-offset-4 hover:underline',
-        nav: 'text-foreground/80 hover:text-primary [&.active]:text-primary p-0 pt-2 pb-6 uppercase font-body tracking-atelier text-xs',
+        nav: 'text-foreground/80 hover:text-primary [&.active]:text-primary p-0 pt-2 pb-6 font-body text-[16px]',
       },
       size: {
         clear: '',

@@ -31,25 +31,28 @@ export function HeaderClient({ header }: Props) {
   return (
     <Navbar className="!top-4">
       <NavBody>
-        <Link
-          className="group relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
-          href="/"
-          aria-label="The9Gifts home"
-        >
-          <LogoIcon className="h-8 w-8 transition-transform duration-300 group-hover:scale-105 glow-gold-sm rounded-full" />
-          <span className="hidden font-medium uppercase tracking-atelier text-primary/90 sm:block">
-            The9Gifts
-          </span>
-        </Link>
+        {/* Left: Logo */}
+        <div className="flex justify-start">
+          <Link
+            className="group relative z-20 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
+            href="/"
+            aria-label="The9Gifts home"
+          >
+            <LogoIcon className="h-8 w-8 transition-transform duration-300 group-hover:scale-105 glow-gold-sm rounded-full" />
+            <span className="hidden font-medium uppercase tracking-atelier text-primary/90 lg:block">
+              The9Gifts
+            </span>
+          </Link>
+        </div>
         
-        {/* Desktop Links using CMSLink */}
-        <div className="hidden flex-1 flex-row items-center justify-center space-x-4 lg:flex lg:space-x-8">
+        {/* Center: Desktop Links using CMSLink */}
+        <div className="hidden lg:flex flex-row items-center justify-center gap-4 lg:gap-8 overflow-x-auto no-scrollbar px-2">
           {menu.map((item, idx) => (
             <CMSLink
               key={idx}
               {...item.link}
               size="clear"
-              className={cn('navLink relative pb-1 text-foreground/80 hover:text-primary transition-colors', {
+              className={cn('navLink relative pb-1 whitespace-nowrap text-[15px] font-medium text-foreground/70 hover:text-primary transition-colors', {
                 active:
                   item.link.url && item.link.url !== '/'
                     ? pathname.includes(item.link.url)
@@ -60,7 +63,8 @@ export function HeaderClient({ header }: Props) {
           ))}
         </div>
         
-        <div className="relative z-20 flex items-center gap-4">
+        {/* Right: Cart */}
+        <div className="flex justify-end items-center gap-4 relative z-20">
           <Suspense fallback={<OpenCartButton />}>
             <Cart />
           </Suspense>
