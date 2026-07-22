@@ -78,11 +78,6 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(12px)',
-        boxShadow: visible
-          ? '0 12px 32px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(199, 154, 66, 0.25)'
-          : '0 4px 12px -4px rgba(0,0,0,0.05), 0 0 0 1px rgba(199, 154, 66, 0.15)',
         maxWidth: visible ? '800px' : '1280px',
         y: visible ? 10 : 0,
       }}
@@ -92,7 +87,11 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         damping: 40,
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full grid-cols-3 items-center self-start rounded-pill px-8 py-3 lg:grid',
+        'relative z-[60] mx-auto hidden w-full grid-cols-3 items-center self-start rounded-pill px-8 py-3 lg:grid transition-shadow duration-300',
+        'bg-background/95 backdrop-blur-md',
+        visible 
+          ? 'shadow-[0_12px_32px_-8px_rgba(0,0,0,0.15),0_0_0_1px_rgba(199,154,66,0.25)] dark:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.5),0_0_0_1px_rgba(199,154,66,0.25)]' 
+          : 'shadow-[0_4px_12px_-4px_rgba(0,0,0,0.05),0_0_0_1px_rgba(199,154,66,0.15)] dark:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.2),0_0_0_1px_rgba(199,154,66,0.15)]',
         className,
       )}
     >
@@ -116,14 +115,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <a
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+          className="relative px-4 py-2 text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground"
           key={`link-${idx}`}
           href={item.link}
         >
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="absolute inset-0 h-full w-full rounded-full bg-accent"
             />
           )}
           <span className="relative z-20">{item.name}</span>
@@ -139,11 +138,6 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       <div className="container mx-auto">
         <motion.div
           animate={{
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(12px)',
-            boxShadow: visible
-              ? '0 12px 32px -8px rgba(0,0,0,0.15), 0 0 0 1px rgba(199, 154, 66, 0.25)'
-              : '0 4px 12px -4px rgba(0,0,0,0.05), 0 0 0 1px rgba(199, 154, 66, 0.15)',
             borderRadius: '9999px',
             y: visible ? 10 : 0,
           }}
@@ -153,7 +147,11 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
             damping: 40,
           }}
           className={cn(
-            'relative z-50 mx-auto flex w-full flex-col items-center justify-between px-6 py-3',
+            'relative z-50 mx-auto flex w-full flex-col items-center justify-between px-6 py-3 transition-shadow duration-300',
+            'bg-background/95 backdrop-blur-md',
+            visible 
+              ? 'shadow-[0_12px_32px_-8px_rgba(0,0,0,0.15),0_0_0_1px_rgba(199,154,66,0.25)] dark:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.5),0_0_0_1px_rgba(199,154,66,0.25)]' 
+              : 'shadow-[0_4px_12px_-4px_rgba(0,0,0,0.05),0_0_0_1px_rgba(199,154,66,0.15)] dark:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.2),0_0_0_1px_rgba(199,154,66,0.15)]',
             className,
           )}
         >
@@ -181,7 +179,7 @@ export const MobileNavMenu = ({ children, className, isOpen, onClose }: MobileNa
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={cn(
-            'absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950',
+            'absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-background px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:shadow-[0_0_24px_rgba(0,0,0,0.5),_0_1px_0_rgba(255,255,255,0.05)_inset]',
             className,
           )}
         >
@@ -227,13 +225,13 @@ export const NavbarButton = ({
   variant?: 'primary' | 'secondary' | 'dark' | 'gradient'
 } & (React.ComponentPropsWithoutRef<'a'> | React.ComponentPropsWithoutRef<'button'>)) => {
   const baseStyles =
-    'px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center'
+    'px-4 py-2 rounded-md bg-background button text-foreground text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center'
 
   const variantStyles = {
     primary:
       'shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]',
-    secondary: 'bg-transparent shadow-none dark:text-white',
-    dark: 'bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]',
+    secondary: 'bg-transparent shadow-none',
+    dark: 'bg-foreground text-background shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]',
     gradient:
       'bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]',
   }

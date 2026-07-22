@@ -104,7 +104,7 @@ export const EcomHeroBlock: React.FC<Props> = async ({
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute left-[10%] top-[20%] h-40 w-40 rounded-full bg-gold/20 blur-2xl"
+            className="pointer-events-none absolute left-[10%] top-[20%] h-40 w-40 rounded-full bg-primary/20 blur-2xl"
           />
         </div>
       </div>

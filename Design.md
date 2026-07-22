@@ -306,6 +306,16 @@ The cinematic track treats whitespace as luxury. Hero sections utilize 128–192
 **`card-photo-frame`**
 - Full-bleed photography container without padding. No text overlays inside the card; imagery stands alone.
 
+## Theme Strategy (Light vs Dark)
+
+The9Gifts utilizes a fluid **Light & Dark Theme** system natively supported by Tailwind CSS (`next-themes`).
+To ensure components gracefully invert when the user toggles their system preference, strictly adhere to semantic variables rather than hardcoded colors.
+
+**Semantic Rules:**
+- **Backgrounds**: Always use `bg-background` for base canvases, `bg-card` for elevated containers, and `bg-accent` for subtle highlights. **Never** use hardcoded `bg-white` or `bg-black`.
+- **Text**: Always use `text-foreground` for primary text and `text-muted-foreground` for secondary/tertiary text. **Never** use `text-white` or `text-black` unless over a purely brand-colored container (e.g. `text-primary-foreground` on Gold buttons).
+- **Shadows & Borders**: Use `border-border` for outlines. For shadows, prefer `shadow-md dark:shadow-neutral-800/50` over explicit RGB values to ensure the shadow fades correctly against dark canvases.
+
 ## Do's and Don'ts
 
 ### Do
@@ -313,8 +323,11 @@ The cinematic track treats whitespace as luxury. Hero sections utilize 128–192
 - Render display tiers (Space Grotesk) at light weights to maintain the bespoke, elegant signature.
 - Pair the Black canvas with White typography and Gold accents.
 - Use full-bleed imagery without text overlays.
+- Rely exclusively on semantic tokens (`bg-background`, `text-foreground`) for all UI blocks.
 
 ### Don't
 - Don't mix random pastel colors. Stick to the refined Gold, Black, White palette.
 - Don't use rounded-rectangle buttons.
 - Don't stack thick, heavy shadows on dark backgrounds. Let the black canvas be completely flat.
+- Don't hardcode `bg-white`, `bg-black`, `text-white`, or `text-black` in structural elements.
+
